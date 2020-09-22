@@ -138,7 +138,7 @@ objects:
     source:
       git:
         ref: master
-        uri: https://github.bancogalicia.com.ar/devo-devops/py-client
+        uri: https://github.com/gditrani269/py-client.git
       sourceSecret:
         name: githubpusher
       type: Git
