@@ -139,8 +139,6 @@ objects:
       git:
         ref: master
         uri: https://github.com/gditrani269/py-client.git
-      sourceSecret:
-        name: githubpusher
       type: Git
     strategy:
       sourceStrategy:
