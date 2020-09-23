@@ -7,11 +7,6 @@ from flask import Flask, render_template, flash, redirect, request, \
 import requests
 import json
 import os
-
-# GDD1
-import kubernetes
-# GDD-END1
-
 # importo el cliente de kubernetes y los objetos de configuracion
 
 from kubernetes import client, config
@@ -22,20 +17,6 @@ config.load_incluster_config()
 v1 = client.CoreV1Api()
 api_instance = client.AppsV1Api()
 DEPLOYMENT_NAME = "nginx-ejemplo"
-
-# GDD2
-# configuro el cliente de kubernetes
-configuration = kubernetes.client.Configuration()
-#configuration.api_key['authorization'] = os.environ['TEMP_KEY']
-#configuration.api_key_prefix['authorization'] = 'Bearer'
-configuration.host = "https://console-openshift-console.apps.us-west-1.starter.openshift-online.com"
-configuration.verify_ssl = False
-
-# creo instancias para la api
-api_client = kubernetes.client.ApiClient(configuration)
-AppsV1instance = kubernetes.client.AppsV1Api(api_client)
-# GDD-END2
-
 @application.route('/health')
 def health():
     """
@@ -44,22 +25,6 @@ def health():
     """
 
     return 'OK'
-
-# GDD3
-@application.route('/<ns>/deployments', methods=['GET'])
-def events(ns):
-    #@application.route('/ddeployments', methods=['GET'])
-    #def deployments():
-    """
-    Lista los DC en el proyecto actual
-    """
-    try:
-      deployments = AppsV1instance.list_namespaced_deployment(namespace = ns)
-    except ApiException as e:
-        print("Exception when calling AppsV1Api->list_namespaced_deployment: %s\n" % e)
-        
-    return jsonify(message = str("deployments"))
-# GDD-END3
 
 @application.route('/<ns>/quota', methods=['GET'])
 def quota(ns):
