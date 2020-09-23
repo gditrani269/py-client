@@ -33,7 +33,7 @@ configuration.verify_ssl = False
 
 # creo instancias para la api
 api_client = kubernetes.client.ApiClient(configuration)
-#AppsV1instance = kubernetes.client.AppsV1Api(api_client)
+AppsV1instance = kubernetes.client.AppsV1Api(api_client)
 # GDD-END2
 
 @application.route('/health')
@@ -44,6 +44,19 @@ def health():
     """
 
     return 'OK'
+
+# GDD3
+@application.route('/<ns>/deployments', methods=['GET'])
+def events(ns):
+    #@application.route('/ddeployments', methods=['GET'])
+    #def deployments():
+    """
+    Lista los DC en el proyecto actual
+    """
+    deployments = AppsV1instance.list_namespaced_deployment(namespace = ns)
+
+    return jsonify(message = str(deployments))
+# GDD-END3
 
 @application.route('/<ns>/quota', methods=['GET'])
 def quota(ns):
