@@ -16,6 +16,9 @@ application.secret_key = os.environ['FLASK_SECRET']
 config.load_incluster_config()
 
 v1 = client.CoreV1Api()
+
+# creo instancias para la api
+api_client = kubernetes.client.ApiClient(configuration)
 AppsV1instance = kubernetes.client.AppsV1Api(api_client)
 
 api_instance = client.AppsV1Api()
