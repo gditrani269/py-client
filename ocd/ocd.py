@@ -7,6 +7,9 @@ from flask import Flask, render_template, flash, redirect, request, \
 import requests
 import json
 import os
+
+import kubernetes
+
 # importo el cliente de kubernetes y los objetos de configuracion
 
 from kubernetes import client, config
