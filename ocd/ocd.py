@@ -22,7 +22,7 @@ v1 = client.CoreV1Api()
 
 # configuro el cliente de kubernetes
 configuration = kubernetes.client.Configuration()
-configuration.api_key['authorization'] = os.environ['TEMP_KEY']
+#configuration.api_key['authorization'] = os.environ['TEMP_KEY']
 configuration.api_key_prefix['authorization'] = 'Bearer'
 configuration.host = "https://ocp-dev.bancogalicia.com.ar"
 configuration.verify_ssl = False
