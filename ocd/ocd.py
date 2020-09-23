@@ -17,6 +17,13 @@ config.load_incluster_config()
 
 v1 = client.CoreV1Api()
 
+# configuro el cliente de kubernetes
+configuration = kubernetes.client.Configuration()
+configuration.api_key['authorization'] = os.environ['TEMP_KEY']
+configuration.api_key_prefix['authorization'] = 'Bearer'
+configuration.host = "https://ocp-dev.bancogalicia.com.ar"
+configuration.verify_ssl = False
+
 # creo instancias para la api
 api_client = kubernetes.client.ApiClient(configuration)
 AppsV1instance = kubernetes.client.AppsV1Api(api_client)
