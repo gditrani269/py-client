@@ -27,7 +27,6 @@ DEPLOYMENT_NAME = "nginx-ejemplo"
 # configuro el cliente de kubernetes
 configuration = kubernetes.client.Configuration()
 #configuration.api_key['authorization'] = os.environ['TEMP_KEY']
-configuration.api_key['authorization'] = 'YOUR_API_KEY'
 #configuration.api_key_prefix['authorization'] = 'Bearer'
 configuration.host = "https://console-openshift-console.apps.us-west-1.starter.openshift-online.com"
 configuration.verify_ssl = False
@@ -59,7 +58,7 @@ def events(ns):
     except ApiException as e:
         print("Exception when calling AppsV1Api->list_namespaced_deployment: %s\n" % e)
         
-    return jsonify(message = str(deployments))
+    return jsonify(message = str("deployments"))
 # GDD-END3
 
 @application.route('/<ns>/quota', methods=['GET'])
