@@ -7,6 +7,11 @@ from flask import Flask, render_template, flash, redirect, request, \
 import requests
 import json
 import os
+
+# GDD1
+import kubernetes
+# GDD-END1
+
 # importo el cliente de kubernetes y los objetos de configuracion
 
 from kubernetes import client, config
@@ -17,6 +22,20 @@ config.load_incluster_config()
 v1 = client.CoreV1Api()
 api_instance = client.AppsV1Api()
 DEPLOYMENT_NAME = "nginx-ejemplo"
+
+# GDD2
+# configuro el cliente de kubernetes
+configuration = kubernetes.client.Configuration()
+#configuration.api_key['authorization'] = os.environ['TEMP_KEY']
+configuration.api_key_prefix['authorization'] = 'Bearer'
+configuration.host = "https://ocp-dev.bancogalicia.com.ar"
+configuration.verify_ssl = False
+
+# creo instancias para la api
+api_client = kubernetes.client.ApiClient(configuration)
+AppsV1instance = kubernetes.client.AppsV1Api(api_client)
+# GDD-END2
+
 @application.route('/health')
 def health():
     """
