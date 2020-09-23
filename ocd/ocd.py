@@ -7,9 +7,6 @@ from flask import Flask, render_template, flash, redirect, request, \
 import requests
 import json
 import os
-
-import kubernetes
-
 # importo el cliente de kubernetes y los objetos de configuracion
 
 from kubernetes import client, config
@@ -17,20 +14,7 @@ from kubernetes import client, config
 application = Flask(__name__)
 application.secret_key = os.environ['FLASK_SECRET']
 config.load_incluster_config()
-
 v1 = client.CoreV1Api()
-
-# configuro el cliente de kubernetes
-configuration = kubernetes.client.Configuration()
-#configuration.api_key['authorization'] = os.environ['TEMP_KEY']
-configuration.api_key_prefix['authorization'] = 'Bearer'
-configuration.host = "https://ocp-dev.bancogalicia.com.ar"
-configuration.verify_ssl = False
-
-# creo instancias para la api
-api_client = kubernetes.client.ApiClient(configuration)
-AppsV1instance = kubernetes.client.AppsV1Api(api_client)
-
 api_instance = client.AppsV1Api()
 DEPLOYMENT_NAME = "nginx-ejemplo"
 @application.route('/health')
@@ -41,17 +25,6 @@ def health():
     """
 
     return 'OK'
-
-@application.route('/<ns>/deployments', methods=['GET'])
-def events(ns):
-    #@application.route('/ddeployments', methods=['GET'])
-    #def deployments():
-    """
-    Lista los DC en el proyecto actual
-    """
-    deployments = AppsV1instance.list_namespaced_deployment(namespace = ns)
-
-    return jsonify(message = str(deployments))
 
 @application.route('/<ns>/quota', methods=['GET'])
 def quota(ns):
