@@ -27,13 +27,13 @@ DEPLOYMENT_NAME = "nginx-ejemplo"
 # configuro el cliente de kubernetes
 configuration = kubernetes.client.Configuration()
 #configuration.api_key['authorization'] = os.environ['TEMP_KEY']
-configuration.api_key_prefix['authorization'] = 'Bearer'
-configuration.host = "https://console-openshift-console.apps.us-west-1.starter.openshift-online.com"
-configuration.verify_ssl = False
+#configuration.api_key_prefix['authorization'] = 'Bearer'
+#configuration.host = "https://console-openshift-console.apps.us-west-1.starter.openshift-online.com"
+#configuration.verify_ssl = False
 
 # creo instancias para la api
-api_client = kubernetes.client.ApiClient(configuration)
-AppsV1instance = kubernetes.client.AppsV1Api(api_client)
+#api_client = kubernetes.client.ApiClient(configuration)
+#AppsV1instance = kubernetes.client.AppsV1Api(api_client)
 # GDD-END2
 
 @application.route('/health')
