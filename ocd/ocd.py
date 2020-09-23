@@ -53,8 +53,11 @@ def events(ns):
     """
     Lista los DC en el proyecto actual
     """
-    deployments = AppsV1instance.list_namespaced_deployment(namespace = ns)
-
+    try:
+      deployments = AppsV1instance.list_namespaced_deployment(namespace = ns)
+    except ApiException as e:
+        print("Exception when calling AppsV1Api->list_namespaced_deployment: %s\n" % e)
+        
     return jsonify(message = str(deployments))
 # GDD-END3
 
