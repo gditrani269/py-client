@@ -14,7 +14,10 @@ from kubernetes import client, config
 application = Flask(__name__)
 application.secret_key = os.environ['FLASK_SECRET']
 config.load_incluster_config()
+
 v1 = client.CoreV1Api()
+AppsV1instance = kubernetes.client.AppsV1Api(api_client)
+
 api_instance = client.AppsV1Api()
 DEPLOYMENT_NAME = "nginx-ejemplo"
 @application.route('/health')
