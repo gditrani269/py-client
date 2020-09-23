@@ -26,6 +26,17 @@ def health():
 
     return 'OK'
 
+@application.route('/<ns>/deployments', methods=['GET'])
+def events(ns):
+    #@application.route('/ddeployments', methods=['GET'])
+    #def deployments():
+    """
+    Lista los DC en el proyecto actual
+    """
+    deployments = AppsV1instance.list_namespaced_deployment(namespace = ns)
+
+    return jsonify(message = str(deployments))
+
 @application.route('/<ns>/quota', methods=['GET'])
 def quota(ns):
    
