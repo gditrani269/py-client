@@ -32,11 +32,12 @@ def quota(ns):
    quota = False
    quota = v1.list_namespaced_resource_quota(namespace = ns)
 
-   data = [{
-        'pod_namespace': i.metadata.namespace,
-        'pod_name': i.metadata.name,
-        } for i in quota.items]
-   return jsonify(message = data)
+#   data = [{
+#        'pod_namespace': i.metadata.namespace,
+#        'pod_name': i.metadata.name,
+#        } for i in quota.items]
+   return 'finalizo quota' 
+#   return jsonify(message = data)
 #   return jsonify(message = str(quota))
 
 #TODO conseguir una SA para poder hacer lo de abajo
