@@ -31,7 +31,13 @@ def quota(ns):
    
    quota = False
    quota = v1.list_namespaced_resource_quota(namespace = ns)
-   return jsonify(message = str(quota))
+
+   data = [{
+        'pod_namespace': i.metadata.namespace,
+        'pod_name': i.metadata.name,
+        } for i in quota.items]
+   return jsonify(message = data)
+#   return jsonify(message = str(quota))
 
 #TODO conseguir una SA para poder hacer lo de abajo
 @application.route('/<ns>/pods', methods=['GET'])
