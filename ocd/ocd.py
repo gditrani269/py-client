@@ -64,7 +64,7 @@ def pods(ns):
         'pod_name': i.metadata.name,
         'pod_ip': i.status.pod_ip,
         'node_ip': i.status.host_ip,
-        'generation': i.metadata.generation,
+        'creationTimestamp': i.metadata.creation_Timestamp,
         } for i in pods.items]
     return jsonify(message = data)
 
