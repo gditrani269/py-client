@@ -29,8 +29,8 @@ def health():
 @application.route('/<ns>/quota', methods=['GET'])
 def quota(ns):
    
-#   quota = False
-#   quota = v1.list_namespaced_resource_quota(namespace = ns)
+   quota = False
+   quota = v1.list_namespaced_resource_quota(namespace = ns)
 
 #   data = [{
 #        'pod_namespace': i.metadata.namespace,
