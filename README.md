@@ -15,4 +15,13 @@ api/v1/namespaces/{namespace}/pods/{name}/log  completar nombre del proyecto en 
 curl -k \
 -H "Authorization: Bearer aauvzkixX4tXpO0ZvnvvKKonyBA5yBeRN7NVe2sdw_0" \
 -H 'Accept: application/json' \
-"https://2886795266-8443-frugo02.environments.katacoda.com/api/v1/namespaces/ser/pods/mi-1-6mn4b/log
+"https://2886795266-8443-frugo02.environments.katacoda.com/api/v1/namespaces/ser/pods/mi-1-6mn4b/log"
+
+Para obtener el detalle del pod:
+
+curl -k \
+-H "Authorization: Bearer aauvzkixX4tXpO0ZvnvvKKonyBA5yBeRN7NVe2sdw_0" \
+-H 'Accept: application/json' \
+"https://2886795266-8443-frugo02.environments.katacoda.com/api/v1/namespaces/ser/pods/mi-1-6mn4b"
+
+nota token: "Authorization: Bearer sha256~PzbqCje0xh84oWlJ1bFbgYQv_5ioHjoTHnC8FKlGliU"
